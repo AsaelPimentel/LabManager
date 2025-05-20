@@ -1,0 +1,14 @@
+﻿.panel-flotante {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: none; /* Inicialmente oculto */
+    z-index: 1050; /* Asegura que se muestre sobre otros elementos */
+}
