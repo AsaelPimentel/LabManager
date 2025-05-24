@@ -22,6 +22,12 @@ Public Class _Default
                 lblProgramas.Text = GetCount(conn, "Programas").ToString()
             End Using
         End If
+
+        If Not IsPostBack Then
+            If Session("Rol") IsNot Nothing AndAlso Convert.ToInt32(Session("Rol")) = 2 Then
+                btnVerMantenimientos.Visible = True
+            End If
+        End If
     End Sub
 
     Private Function GetCount(conn As SqlConnection, tableName As String) As Integer

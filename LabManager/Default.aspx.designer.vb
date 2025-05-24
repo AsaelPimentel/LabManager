@@ -48,4 +48,22 @@ Partial Public Class _Default
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents lblProgramas As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control btnVerMantenimientos.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnVerMantenimientos As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Control btnVerReportes.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnVerReportes As Global.System.Web.UI.WebControls.Button
 End Class
