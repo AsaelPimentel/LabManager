@@ -4,11 +4,10 @@ Public Class _Default
     Inherits Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-        Me.DataBind()
-
         If Session("Rol") = Nothing Then
             Response.Redirect("login.aspx")
         End If
+        Me.DataBind()
 
         If Not IsPostBack Then
             Dim connStr As String = ConfigurationManager.ConnectionStrings("CS_LabManager").ConnectionString
