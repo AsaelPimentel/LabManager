@@ -6,11 +6,6 @@
         </h3>
     </div>
 
-
-
-
-
-
     <div class="container mt-5">
         <div class="row text-center">
 
@@ -60,9 +55,9 @@
 
         </div>
     </div>
-
-    <div class="col-md-3 mb-4">
-        <div class="card shadow-sm">
+<div class="row justify-content-center">
+    <div class="col-md-3 mb-4 d-flex justify-content-center">
+        <div class="card shadow-sm w-100">
             <div class="card-body text-center">
                 <i class="fas fa-wrench fa-3x text-secondary mb-3"></i>
                 <h5 class="card-title">Mantenimientos</h5>
@@ -74,10 +69,10 @@
         </div>
     </div>
 
-    <div class="col-md-3 mb-4">
-        <div class="card shadow-sm">
+    <div class="col-md-3 mb-4 d-flex justify-content-center">
+        <div class="card shadow-sm w-100">
             <div class="card-body text-center">
-                <i class="fas fa-file-pdf fa-3x text-secondary mb-3"></i>
+                <i class="fas fa-file-pdf fa-3x text-info mb-3"></i>
                 <h5 class="card-title">Reportes</h5>
                 <asp:Button ID="btnVerReportes" runat="server" Text="Ver"
                     CssClass="btn btn-outline-secondary btn-sm"
@@ -86,6 +81,16 @@
             </div>
         </div>
     </div>
+</div>
 
+
+    <style>
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+</style>
 
 </asp:Content>

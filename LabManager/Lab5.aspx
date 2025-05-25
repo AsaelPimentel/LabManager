@@ -1,7 +1,6 @@
-﻿<%@ Page Title="Lab4" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Lab5.aspx.vb" Inherits="LabManager.Lab5" %>
+﻿<%@ Page Title="Laboratorio 5" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Lab5.aspx.vb" Inherits="LabManager.Lab5" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
 
     <div class="container text-center mt-4">
         <h1 class="display-4 fw-bold text-primary">Laboratorio 5</h1>
@@ -10,21 +9,35 @@
 
     <div class="container my-4">
         <div class="row justify-content-center text-center">
-            <div class="col-md-auto">
+
+            <!-- Dropdown para seleccionar qué mostrar -->
+            <div class="col-md-auto mb-3">
                 <asp:Label ID="Label1" runat="server" Text="Mostrar:" CssClass="form-label fw-bold me-2 d-block"></asp:Label>
-                <asp:DropDownList ID="DdlGridview" runat="server" CssClass="form-select form-select-lg shadow-sm border-primary text-center mx-auto" AutoPostBack="True">
+                <asp:DropDownList ID="DdlGridview" runat="server" CssClass="form-select form-select-lg shadow-sm border-primary text-center mx-auto" AutoPostBack="True" OnSelectedIndexChanged="DdlGridview_SelectedIndexChanged">
                     <asp:ListItem Value="0">Seleccionar</asp:ListItem>
                     <asp:ListItem Value="1">Programas</asp:ListItem>
                     <asp:ListItem Value="2">Componentes</asp:ListItem>
                 </asp:DropDownList>
             </div>
+
+            <!-- Dropdown para seleccionar la computadora -->
+            <div class="col-md-auto mb-3">
+                <asp:Label ID="LabelComputadora" runat="server" Text="Selecciona Computadora:" CssClass="form-label fw-bold me-2 d-block"></asp:Label>
+                <asp:DropDownList ID="DdlComputadora" runat="server" CssClass="form-select form-select-lg shadow-sm border-primary text-center mx-auto" AutoPostBack="True" OnSelectedIndexChanged="DdlComputadora_SelectedIndexChanged">
+                </asp:DropDownList>
+            </div>
+
         </div>
     </div>
 
-
-    <asp:SqlDataSource ID="DS_Lab5" runat="server" ConnectionString="<%$ ConnectionStrings:CS_LabManager %>" SelectCommand="SELECT [id_asignacion], [nombre_laboratorio], [ubicacion], [nombre_equipo], [fecha_instalacion], [nombre_programa], [version_programa], [licencia], [descripcion] FROM [Vista_ProgramasPorComputadoraYLaboratorio] WHERE ([id_laboratorio] = @id_laboratorio)">
+    <!-- SqlDataSource para Programas -->
+    <asp:SqlDataSource ID="DS_Lab5" runat="server" ConnectionString="<%$ ConnectionStrings:CS_LabManager %>"
+        SelectCommand="SELECT [id_asignacion], [nombre_laboratorio], [ubicacion], [nombre_equipo], [fecha_instalacion], [nombre_programa], [version_programa], [licencia], [descripcion]
+                       FROM [Vista_ProgramasPorComputadoraYLaboratorio]
+                       WHERE ([id_laboratorio] = @id_laboratorio) AND ([id_computadora] = @id_computadora)">
         <SelectParameters>
             <asp:Parameter DefaultValue="5" Name="id_laboratorio" Type="Int32" />
+            <asp:ControlParameter ControlID="DdlComputadora" Name="id_computadora" PropertyName="SelectedValue" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
 
@@ -42,13 +55,14 @@
         </Columns>
     </asp:GridView>
 
-
-    <asp:SqlDataSource ID="DS_Lab5PC" runat="server" ConnectionString="<%$ ConnectionStrings:CS_LabManager %>" SelectCommand="SELECT * FROM [vw_ComponentesPorComputadora] WHERE ([id_laboratorio] = @id_laboratorio)">
+    <!-- SqlDataSource para Componentes -->
+    <asp:SqlDataSource ID="DS_Lab5PC" runat="server" ConnectionString="<%$ ConnectionStrings:CS_LabManager %>"
+        SelectCommand="SELECT * FROM [vw_ComponentesPorComputadora] WHERE ([id_laboratorio] = @id_laboratorio) AND ([id_computadora] = @id_computadora)">
         <SelectParameters>
             <asp:Parameter DefaultValue="5" Name="id_laboratorio" Type="Int32" />
+            <asp:ControlParameter ControlID="DdlComputadora" Name="id_computadora" PropertyName="SelectedValue" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
-
 
     <asp:GridView ID="GV_PCsLab5" runat="server" AutoGenerateColumns="False" DataKeyNames="id_computadora,id_componente" DataSourceID="DS_Lab5PC" CssClass="table table-bordered table-hover table-responsive text-center table-striped" AllowPaging="True" Visible="false">
         <Columns>
@@ -64,4 +78,5 @@
             <asp:BoundField DataField="tipo_almacenamiento" HeaderText="almacenamiento" SortExpression="tipo_almacenamiento" />
         </Columns>
     </asp:GridView>
+
 </asp:Content>

@@ -32,6 +32,24 @@ Partial Public Class Lab1
     Protected WithEvents DdlGridview As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''Control LabelComputadora.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents LabelComputadora As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control DdlComputadora.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents DdlComputadora As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''Control DS_Lab1.
     '''</summary>
     '''<remarks>

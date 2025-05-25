@@ -7,24 +7,37 @@
         <p class="lead text-secondary">Gestiona y administra los elementos del laboratorio de manera eficiente.</p>
     </div>
 
-
     <div class="container my-4">
         <div class="row justify-content-center text-center">
-            <div class="col-md-auto">
+
+            <!-- Dropdown para seleccionar qué mostrar -->
+            <div class="col-md-auto mb-3">
                 <asp:Label ID="Label1" runat="server" Text="Mostrar:" CssClass="form-label fw-bold me-2 d-block"></asp:Label>
-                <asp:DropDownList ID="DdlGridview" runat="server" CssClass="form-select form-select-lg shadow-sm border-primary text-center mx-auto" AutoPostBack="True">
+                <asp:DropDownList ID="DdlGridview" runat="server" CssClass="form-select form-select-lg shadow-sm border-primary text-center mx-auto" AutoPostBack="True" OnSelectedIndexChanged="DdlGridview_SelectedIndexChanged">
                     <asp:ListItem Value="0">Seleccionar</asp:ListItem>
                     <asp:ListItem Value="1">Programas</asp:ListItem>
                     <asp:ListItem Value="2">Componentes</asp:ListItem>
                 </asp:DropDownList>
             </div>
+
+            <!-- Dropdown para seleccionar la computadora -->
+            <div class="col-md-auto mb-3">
+                <asp:Label ID="LabelComputadora" runat="server" Text="Selecciona Computadora:" CssClass="form-label fw-bold me-2 d-block"></asp:Label>
+                <asp:DropDownList ID="DdlComputadora" runat="server" CssClass="form-select form-select-lg shadow-sm border-primary text-center mx-auto" AutoPostBack="True" OnSelectedIndexChanged="DdlComputadora_SelectedIndexChanged">
+                </asp:DropDownList>
+            </div>
+
         </div>
     </div>
 
-
-    <asp:SqlDataSource ID="DS_Lab1" runat="server" ConnectionString="<%$ ConnectionStrings:CS_LabManager %>" SelectCommand="SELECT [id_asignacion], [nombre_laboratorio], [ubicacion], [nombre_equipo], [fecha_instalacion], [nombre_programa], [version_programa], [licencia], [descripcion] FROM [Vista_ProgramasPorComputadoraYLaboratorio] WHERE ([id_laboratorio] = @id_laboratorio)">
+    <!-- SqlDataSource para Programas -->
+    <asp:SqlDataSource ID="DS_Lab1" runat="server" ConnectionString="<%$ ConnectionStrings:CS_LabManager %>"
+        SelectCommand="SELECT [id_asignacion], [nombre_laboratorio], [ubicacion], [nombre_equipo], [fecha_instalacion], [nombre_programa], [version_programa], [licencia], [descripcion]
+                       FROM [Vista_ProgramasPorComputadoraYLaboratorio]
+                       WHERE ([id_laboratorio] = @id_laboratorio) AND ([id_computadora] = @id_computadora)">
         <SelectParameters>
             <asp:Parameter DefaultValue="1" Name="id_laboratorio" Type="Int32" />
+            <asp:ControlParameter ControlID="DdlComputadora" Name="id_computadora" PropertyName="SelectedValue" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
 
@@ -32,25 +45,24 @@
         <Columns>
             <asp:BoundField DataField="id_asignacion" HeaderText="#" ReadOnly="True" SortExpression="id_asignacion" />
             <asp:BoundField DataField="nombre_laboratorio" HeaderText="Laboratorio" SortExpression="nombre_laboratorio" />
-            <asp:BoundField DataField="ubicacion" HeaderText="Ubicacion" SortExpression="ubicacion" />
+            <asp:BoundField DataField="ubicacion" HeaderText="Ubicación" SortExpression="ubicacion" />
             <asp:BoundField DataField="nombre_equipo" HeaderText="Equipo" SortExpression="nombre_equipo" />
-            <asp:BoundField DataField="fecha_instalacion" HeaderText="Fecha de Instalacion" SortExpression="fecha_instalacion" />
+            <asp:BoundField DataField="fecha_instalacion" HeaderText="Fecha de Instalación" SortExpression="fecha_instalacion" />
             <asp:BoundField DataField="nombre_programa" HeaderText="Programa" SortExpression="nombre_programa" />
-            <asp:BoundField DataField="version_programa" HeaderText="Version" SortExpression="version_programa" />
+            <asp:BoundField DataField="version_programa" HeaderText="Versión" SortExpression="version_programa" />
             <asp:BoundField DataField="licencia" HeaderText="Licencia" SortExpression="licencia" />
-            <asp:BoundField DataField="descripcion" HeaderText="Descripcion" SortExpression="descripcion" />
+            <asp:BoundField DataField="descripcion" HeaderText="Descripción" SortExpression="descripcion" />
         </Columns>
     </asp:GridView>
 
-
-
-
-    <asp:SqlDataSource ID="DS_Lab1PC" runat="server" ConnectionString="<%$ ConnectionStrings:CS_LabManager %>" SelectCommand="SELECT * FROM [vw_ComponentesPorComputadora] WHERE ([id_laboratorio] = @id_laboratorio)">
+    <!-- SqlDataSource para Componentes -->
+    <asp:SqlDataSource ID="DS_Lab1PC" runat="server" ConnectionString="<%$ ConnectionStrings:CS_LabManager %>"
+        SelectCommand="SELECT * FROM [vw_ComponentesPorComputadora] WHERE ([id_laboratorio] = @id_laboratorio) AND ([id_computadora] = @id_computadora)">
         <SelectParameters>
             <asp:Parameter DefaultValue="1" Name="id_laboratorio" Type="Int32" />
+            <asp:ControlParameter ControlID="DdlComputadora" Name="id_computadora" PropertyName="SelectedValue" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
-
 
     <asp:GridView ID="GV_PCsLab1" runat="server" AutoGenerateColumns="False" DataKeyNames="id_computadora,id_componente" DataSourceID="DS_Lab1PC" CssClass="table table-bordered table-hover table-responsive text-center table-striped" AllowPaging="True" Visible="false">
         <Columns>
@@ -63,7 +75,8 @@
             <asp:BoundField DataField="modelo" HeaderText="Modelo" SortExpression="modelo" />
             <asp:BoundField DataField="numero_serie" HeaderText="Serie" SortExpression="numero_serie" />
             <asp:BoundField DataField="capacidad" HeaderText="Capacidad" SortExpression="capacidad" />
-            <asp:BoundField DataField="tipo_almacenamiento" HeaderText="almacenamiento" SortExpression="tipo_almacenamiento" />
+            <asp:BoundField DataField="tipo_almacenamiento" HeaderText="Almacenamiento" SortExpression="tipo_almacenamiento" />
         </Columns>
     </asp:GridView>
+
 </asp:Content>
