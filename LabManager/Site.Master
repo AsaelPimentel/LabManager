@@ -62,11 +62,11 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Reservar.aspx">Reservar</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/lab1.aspx">Laboratio 1</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/lab2.aspx">Laboratio 2</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/lab3.aspx">Laboratio 3</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/lab4.aspx">Laboratio 4</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/lab5.aspx">Laboratio 5</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/lab1.aspx">Laboratorios 1</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/lab2.aspx">Laboratorios 2</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/lab3.aspx">Laboratorios 3</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/lab4.aspx">Laboratorios 4</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/lab5.aspx">Laboratorios 5</a></li>
                         <%If Session("Rol") = "1" Then%>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Administracion.aspx">Adminsitración</a></li>
                         <%End If %>
@@ -98,7 +98,7 @@
                         <p>&copy; <%: DateTime.Now.Year %> - LabManager</p>
                     </div>
                     <div class="col-md-4">
-                        <p>Pendinte</p>
+                        <p>pendiente</p>
                     </div>
                 </div>
 
